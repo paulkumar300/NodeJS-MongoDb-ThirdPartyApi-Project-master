@@ -1,0 +1,33 @@
+extends layout
+
+
+block content
+  div.collapse.navbar-collapse(id='search-buttons')
+    ul.nav.navbar-nav.navbar-left
+      li
+        h3 Searchs
+    ul.nav.navbar-nav.navbar-right
+      li
+        a(href='/search/add') Add Search
+      
+  div
+  table#resultTable.table.table-striped.table-bordered
+    thead
+      tr
+        th Name
+        th Url
+        th Action
+    tbody
+      each data, i in list
+        tr 
+          td
+            Name  #{data.name} 
+          td
+            Url #{data.url}
+          td
+            a(href='/search/searchFilter?domain='+data.url) Execute
+block script
+   script(type='text/javascript').
+    $(function() {
+      $('#resultTable').DataTable({'searching':true});
+    });

@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  div.collapse.navbar-collapse(id='search-buttons')
+    ul.nav.navbar-nav.navbar-left
+      li
+        h3 Searchs
+    ul.nav.navbar-nav.navbar-right
+      li
+        a(href='/search/add') Add Search
+      li
+        a(href='/search/') View Search
+   div
+  table#searchResultTable.table.table-striped.table-bordered 
+    thead
+      tr
+        th Domain
+        th Total
+        th Personal
+        th generic
+    tbody
+      each val, i in domains
+        tr 
+          td
+            domain  #{val.meta.params.domain} 
+          td
+            total  #{val.data.total} 
+          td
+            personal  #{val.data.personal_emails} 
+          td
+            generic  #{val.data.generic_emails} 
+block script
+   script(type='text/javascript').
+    $(function() {
+      $('#searchResultTable').DataTable({'searching':true});
+    });        
